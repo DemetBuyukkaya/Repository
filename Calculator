@@ -1,0 +1,48 @@
+
+def ekle(n1, n2):
+  return n1 + n2
+
+def cikar(n1, n2):
+  return n1 - n2
+
+def carp(n1, n2):
+  return n1 * n2
+
+def bol(n1, n2):
+  return n1 / n2
+
+operations = {
+  "+": ekle,
+  "-": cikar,
+  "*": carp,
+  "/": bol
+}
+
+
+def devam():
+  num1 = int(input("What's the first number?: "))
+  
+  for symbol in operations:
+    print(symbol)
+
+  operation_symbol = input("Pick an operation: ") 
+  num2 = int(input("What's the next number?: "))
+  calculation_functio2n = operations[operation_symbol]
+  first_answer = calculation_functio2n(num1, num2)
+  print(f"{num1} {operation_symbol} {num2} = {first_answer}")
+  tekrar = True
+  
+  while tekrar:
+    operation_symbol = input("Pick an operation: ") 
+    num3 = int(input("What's the next number?: "))
+    calculation_function = operations[operation_symbol] 
+    second_answer =   calculation_function(calculation_functio2n(num1, num2), num3)
+    second_answer = calculation_function(first_answer, num3)
+    
+    print(f"{first_answer} {operation_symbol} {num3} = {second_answer}")
+    soru = input("Tekrar üstüne işlem yapmak istiyorsanız: y yeniden işme başlamak istiyorsanız n tuşuna basınız:")
+    if soru == "n":
+      devam()
+    else:
+      first_answer = second_answer
+devam()
